@@ -4,18 +4,15 @@ import axios from '../axios-auth'
 export const useUserSessionStore = defineStore('userSession', {
   state: () => ({
     jwt: '',
-    email: ''
+    email: '',
   }),
   getters: {
     isAuth: (state) => {
-        state.jwt !== ''
+        return state.jwt !== ''
     },
     getJwt(state){
         return state.jwt
     },
-    loggedIn(state){
-        return state.jwt !== ''
-    }
   },
   actions: {
     localLogin() {
@@ -45,6 +42,7 @@ export const useUserSessionStore = defineStore('userSession', {
 
             console.log(this.jwt);
             axios.defaults.headers.common["Authorization"] = "Bearer " + this.jwt;
+            this.loggedIn = true;
             resolve();
           })
           .catch((err) => {
@@ -53,15 +51,14 @@ export const useUserSessionStore = defineStore('userSession', {
           })
         })
     },
-    autoLogin() {
-      const token = localStorage.getItem('token');
-      const username = localStorage.getItem('username');
-      if (token && username) {
-      axios.defaults.headers.common["Authorization"] = 
-      "Bearer " + token;
-      this.token = token;
-      this.username = username;
-      }
-    },      
+    logout() {
+        this.jwt = '';
+        this.email = '';
+        localStorage.removeItem("jwt");
+        localStorage.removeItem("email");
+        axios.defaults.headers.common["Authorization"] = "";
+
+    }
+    
   },
 })

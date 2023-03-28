@@ -8,11 +8,11 @@
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
         <div class="form-floating">
-            <input type="email" name="email" v-model="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+            <input type="email" name="email" v-model="email" class="form-control" id="floatingInput" required placeholder="name@example.com">
             <label for="floatingInput">Email address</label>
         </div>
         <div class="form-floating">
-            <input type="password" name="password" v-model="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <input type="password" name="password" v-model="password" class="form-control" required id="floatingPassword" placeholder="Password">
             <label for="floatingPassword">Password</label>
         </div>
         <button @click="login" class="btn my-3 btn-lg btn-primary">Sign in</button>

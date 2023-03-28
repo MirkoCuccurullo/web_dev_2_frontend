@@ -16,27 +16,26 @@
             >Login</router-link
           >
         </li>
-        <li class="nav-item">
+        <li v-if="this.store.isAuth" class="nav-item">
           <router-link to="/add/user"  class="nav-link" active-class="active"
             >Register User</router-link
           >
         </li>
-        <li class="nav-item">
+        <li v-if="this.store.isAuth" class="nav-item">
           <router-link to="/add/lawyer" class="nav-link" active-class="active"
             >Add Lawyer</router-link
           >
         </li>
-        <li class="nav-item">
+        <li v-if="this.store.isAuth" class="nav-item">
           <router-link to="/manage" class="nav-link" active-class="active"
             >Manage Appointments</router-link
           >
         </li>
       </ul>
-      <form action="/addAppointment" method="post">
 
-<input class="form-control btn btn-primary m-2" type="submit" value="Book Appointment"/>
+<button class="form-control btn btn-primary m-2" type="submit" value="Book Appointment">Book Appointment </button>
+<button class="form-control btn btn-primary m-2" @click="logout" v-if="this.store.isAuth">Logout </button>
 
-</form>
     </div>
   </nav>
 </template>
@@ -44,14 +43,24 @@
 <script>
 import { useUserSessionStore } from "../stores/userSession";
 export default {
-  default() {
+
+  setup() {
     return {
       store: useUserSessionStore(),
     };
+  },
+  methods: {
+    logout() {
+      this.store.logout();
+    },
   },
   name: "Navigation",
 };
 </script>
 
-<style>
+<style scoped>
+button{
+  margin: 0 10px;
+  width: 12%;
+}
 </style>

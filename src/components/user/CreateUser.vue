@@ -4,11 +4,11 @@
     <div class="container d-flex flex-wrap justify-content-center">
         <div>
             <label class='form-label' for="name"> Name:</label><br>
-            <input class="form-control-5" type="text" v-model="name" id="name" name="name"><br>
+            <input class="form-control-5" type="text" v-model="name" required><br>
             <label class="form-label" for="email"> Email:</label><br>
-            <input class="form-control-5" type="text" v-model="email" id="email" name="email"><br>
+            <input class="form-control-5" type="text" v-model="email" required><br>
             <label class="form-label" for="password">Password:</label><br>
-            <input class="form-control-5" type="password" v-model="password" name="password" id="password"> <br><br>
+            <input class="form-control-5" type="password" v-model="password" required> <br><br>
             <button class="btn btn-primary" @click="register" >Register</button>
 
         </div>
@@ -28,19 +28,28 @@ export default {
     },
     data() {
         return {
-            name: "",
+            firstname: "",
             email: "",
             password: "",
         };
     },
     methods: {
-
-        register() {  
-            axios.post("users", {
+        register() { 
+            const jwt = localStorage.getItem("jwt"); 
+            axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
+            axios.post("/users", {
                 name: this.name,
                 email: this.email,
                 password: this.password,
+            })
+            .then((response) => {
+                console.log(response);
+            })
+            .catch((error) => {
+                console.log(error);
             });
+
+            
         },
     },
   name: "CreateUser",
