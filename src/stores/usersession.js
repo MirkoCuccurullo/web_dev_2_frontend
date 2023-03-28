@@ -10,6 +10,12 @@ export const useUserSessionStore = defineStore('userSession', {
     isAuth: (state) => {
         state.jwt !== ''
     },
+    getJwt(state){
+        return state.jwt
+    },
+    loggedIn(state){
+        return state.jwt !== ''
+    }
   },
   actions: {
     localLogin() {
@@ -47,5 +53,15 @@ export const useUserSessionStore = defineStore('userSession', {
           })
         })
     },
+    autoLogin() {
+      const token = localStorage.getItem('token');
+      const username = localStorage.getItem('username');
+      if (token && username) {
+      axios.defaults.headers.common["Authorization"] = 
+      "Bearer " + token;
+      this.token = token;
+      this.username = username;
+      }
+    },      
   },
 })

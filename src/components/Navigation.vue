@@ -12,13 +12,23 @@
           >
         </li>      
         <li class="nav-item">
-          <router-link to="/login" class="nav-link" active-class="active"
+          <router-link to="/login"  class="nav-link" active-class="active"
             >Login</router-link
           >
         </li>
         <li class="nav-item">
+          <router-link to="/add/user"  class="nav-link" active-class="active"
+            >Register User</router-link
+          >
+        </li>
+        <li class="nav-item">
+          <router-link to="/add/lawyer" class="nav-link" active-class="active"
+            >Add Lawyer</router-link
+          >
+        </li>
+        <li class="nav-item">
           <router-link to="/manage" class="nav-link" active-class="active"
-            >Manage</router-link
+            >Manage Appointments</router-link
           >
         </li>
       </ul>
