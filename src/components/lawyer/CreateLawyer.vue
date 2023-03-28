@@ -12,7 +12,7 @@
 
 
     <div id="app">
-        <select v-model="law_area">
+        <select v-model="law_area" class="form-select my-3">
          <option v-for="item in areas" :value="item.type_id">{{item.description}}</option>
         </select>
     </div>
