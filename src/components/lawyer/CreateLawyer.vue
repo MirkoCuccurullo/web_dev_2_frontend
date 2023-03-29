@@ -18,6 +18,8 @@
     </div>
         <button class="btn btn-primary" @click="register"> Register</button>
     </div>
+    <br>
+                <label v-if="this.created"> Lawyer has been created! </label>
 
 </div>
 </template>
@@ -43,6 +45,7 @@ export default {
             email: "",
             law_area: "",
             areas: [],
+            created: false,
         };
     },
     methods: {
@@ -55,6 +58,7 @@ export default {
                 type: this.law_area,
             }).then((response) => {
                 console.log(response);
+                this.created = true;
             }).catch((error) => {
                 console.log(error);
                 

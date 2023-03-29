@@ -106,6 +106,7 @@ export default {
                 time_to: this.time_to,
             }).then((response) => {
                 console.log(response);
+                this.$router.push("/manage");
             }).catch((error) => {
                 console.log(error);
             })

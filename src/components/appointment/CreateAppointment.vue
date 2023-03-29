@@ -38,7 +38,8 @@
                 </div> <br>
                 <div class="form-group">
                     <button type="submit" @click="takeAppointment" class="btn btn-primary">Add Appointment</button>
-                </div>
+                </div> <br>
+                <label v-if="this.created"> Appointment has been booked! </label>
             </div>
         </div>
     </div>
@@ -59,6 +60,7 @@ export default {
             time_to: "",
             areas: [],
             lawyers: [],
+            created: false
         };
     },
     methods: {
@@ -71,6 +73,7 @@ export default {
                 time_to: this.time_to,
             }).then((response) => {
                 console.log(response);
+                this.created = true;
             }).catch((error) => {
                 console.log(error);    
             });

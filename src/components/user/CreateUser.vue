@@ -12,6 +12,8 @@
             <button class="btn btn-primary" @click="register" >Register</button>
 
         </div>
+        <br>
+                <label v-if="this.created"> User has been registered! </label>
 
     </div>
 </template>
@@ -31,6 +33,7 @@ export default {
             firstname: "",
             email: "",
             password: "",
+            created: false,
         };
     },
     methods: {
@@ -44,6 +47,7 @@ export default {
             })
             .then((response) => {
                 console.log(response);
+                this.created = true;
             })
             .catch((error) => {
                 console.log(error);
