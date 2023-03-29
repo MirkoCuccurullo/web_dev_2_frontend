@@ -33,7 +33,7 @@
         </li>
       </ul>
 
-<button class="form-control btn btn-primary m-2" type="submit" value="Book Appointment">Book Appointment </button>
+<button class="form-control btn btn-primary m-2" @click="this.$router.push('/create/appointment')">Book Appointment </button>
 <button class="form-control btn btn-primary m-2" @click="logout" v-if="this.store.isAuth">Logout </button>
 
     </div>
