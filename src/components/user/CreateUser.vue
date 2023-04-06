@@ -24,6 +24,7 @@ import axios from "../../axios-auth";
 
 export default {
     setup() {
+
         return {
             store: useUserSessionStore(),
         };
@@ -55,6 +56,11 @@ export default {
 
             
         },
+    },
+    mounted(){
+        if(!localStorage.getItem("jwt")) {
+            this.$router.push("/login");
+        }
     },
   name: "CreateUser",
 };

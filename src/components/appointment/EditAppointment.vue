@@ -72,6 +72,10 @@ export default {
         }
     },
     mounted() {
+        if(!localStorage.getItem("jwt")) {
+            this.$router.push("/login");
+        }
+        
         axios.get("appointments/" + this.$route.params.id).then((response) => {
             this.id = response.data.id;
             this.name = response.data.client_name;

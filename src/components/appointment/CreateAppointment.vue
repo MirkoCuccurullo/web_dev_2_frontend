@@ -80,6 +80,10 @@ export default {
         },
     },
     mounted() {
+        if(!localStorage.getItem("jwt")) {
+            this.$router.push("/login");
+        }
+        
         axios.get("lawareas").then((response) => {
             this.areas = response.data;
         }).catch((error) => {

@@ -66,6 +66,10 @@ export default {
         }
     },
     mounted() {
+        if(!localStorage.getItem("jwt")) {
+            this.$router.push("/login");
+        }
+        
         axios.defaults.headers.common["Authorization"] = "Bearer " + this.store.getJwt;
         axios.get("lawareas")
             .then((response) => {

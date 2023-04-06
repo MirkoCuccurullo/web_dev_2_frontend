@@ -45,6 +45,10 @@ export default {
         
     },
     mounted() {
+        if(!localStorage.getItem("jwt")) {
+            this.$router.push("/login");
+        }
+        
         const jwt = localStorage.getItem("jwt");
         axios.defaults.headers.common["Authorization"] = "Bearer " + jwt;
         axios.get("appointments").then((response) => {
